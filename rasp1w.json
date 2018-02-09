@@ -1,0 +1,28 @@
+{
+    "name":"rasp1w",
+    "description": "Raspberry 1-Wire",
+    "module": "rasp1w.js",
+    "single":1,
+
+    "params": [
+      {
+        "name": "period",
+        "note": "Период опроса(сек)",
+        "type": "number",
+        "val": "10"
+      }
+    ],
+
+  "chpattern": [    
+  ],
+  
+  
+
+    "genrules":{
+      "TEMP":{"cl":"SensorA"}
+    },
+
+    "actions": [
+        {}
+    ]
+}

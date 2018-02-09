@@ -1,0 +1,6 @@
+{
+    "id":"rasp1w",
+    "description":"Raspberry 1-Wire",
+    "cross":true,
+	"version":"1.0.0"
+}
