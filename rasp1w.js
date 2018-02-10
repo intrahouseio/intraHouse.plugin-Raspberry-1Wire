@@ -47,7 +47,7 @@ function getTable(name) {
 }
 
 function sendChannels() {
-    process.send({type:'channels', data:devList.map(id => ({id:id, desc:'TEMP'}))});
+    process.send({type:'channels', data:devList.map(id => ({id:'temp_'+id, desc:'TEMP'}))});
 }
 
 /**
@@ -69,7 +69,7 @@ function pollDevices() {
 					console.log('1-wire catch '+e.message);
 				}
 				// process.send('OWR?temp_'+devList[i]+'='+val);
-				process.send({type:'data', data:[{id: 'temp_'+devList[i], value}]);
+				process.send({type:'data', data:[{id: 'temp_'+devList[i], value}]});
 				console.log( 'OWR?temp_'+devList[i]+'='+val);
 			}	
 		}
@@ -112,7 +112,7 @@ function getDevList() {
     for (var i = 0; i < filelist.length; i++) {
       if (!isDS18B20Sensor( filelist[i]))  continue;
 
-      stats = fs.statSync(folder + "/" + filelist[i]);
+      stats = fs.statSync(w1folder + "/" + filelist[i]);
       if (stats.isDirectory()) {
         arr.push(filelist[i]);
       }

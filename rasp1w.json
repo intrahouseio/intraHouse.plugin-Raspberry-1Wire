@@ -19,7 +19,7 @@
   
 
     "genrules":{
-      "TEMP":{"cl":"SensorA"}
+      "TEMP":{"cl":"SensorA", "calc":"Math.round(value*10)/10"}
     },
 
     "actions": [
