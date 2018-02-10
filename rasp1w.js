@@ -6,8 +6,6 @@
 const util = require("util");
 const fs = require('fs');
 
-const ut = require("./lib/utils");
-
 const logger = require("./lib/logger");
 const plugin = require("./lib/plugin");
 
@@ -19,8 +17,8 @@ let step = 0;
 let devList = getDevList();
 
 // От сервера конфигурацию не получаем. Получаем параметры и запускаем цикл опроса 
-
 next();
+
 function next() {
   switch (step) {
     case 0:
@@ -35,7 +33,7 @@ function next() {
 
       // Запуск Основного цикла опроса
       pollDevices();
-      setInterval(pollDevices, plugin.params.period);
+      setInterval(pollDevices, plugin.params.period*1000); // Период задан в сек
       step = 2;
       break;
     default:
@@ -66,11 +64,9 @@ function pollDevices() {
 						value = readTemp(fs.readFileSync(filename));
 					}
 				} catch (e) {
-					console.log('1-wire catch '+e.message);
+					logger.log('ERR: '+e.message);
 				}
-				// process.send('OWR?temp_'+devList[i]+'='+val);
 				process.send({type:'data', data:[{id: 'temp_'+devList[i], value}]});
-				console.log( 'OWR?temp_'+devList[i]+'='+val);
 			}	
 		}
 	}	
@@ -86,7 +82,7 @@ function pollDevices() {
 				result = parseInt(data.substr(j+2));
 			}	
 		} 
-		return (isNumeric(result) ? result/1000 : null);
+		return (isNumeric(result) ? result : null);
 	}
  
 	

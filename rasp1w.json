@@ -1,15 +1,15 @@
 {
     "name":"rasp1w",
-    "description": "Raspberry 1-Wire",
+    "description": "Raspberry 1-Wire GPIO4",
     "module": "rasp1w.js",
     "single":1,
 
     "params": [
       {
         "name": "period",
-        "note": "Период опроса(сек)",
+        "note": "Период опроса (сек)",
         "type": "number",
-        "val": "10"
+        "val": "1"
       }
     ],
 
@@ -19,7 +19,7 @@
   
 
     "genrules":{
-      "TEMP":{"cl":"SensorA", "calc":"Math.round(value*10)/10"}
+      "TEMP":{"cl":"SensorA", "calc":"Math.round(value/100)/10"}
     },
 
     "actions": [
